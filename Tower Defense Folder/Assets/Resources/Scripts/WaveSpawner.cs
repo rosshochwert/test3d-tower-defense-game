@@ -12,10 +12,11 @@ public class WaveSpawner : MonoBehaviour
 
     private float countdown = 5f;
 
-    private int waveIndex = 0;
+    private int waveIndex = 1;
 
     void Update(){
         if (countdown<=0f){
+            Debug.Log("Countdown down, starting to spawn wave");
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
         }
@@ -24,8 +25,8 @@ public class WaveSpawner : MonoBehaviour
     }
 
     IEnumerator SpawnWave(){
-        // Debug.console("Starting wave!");
         for (int i=0; i<waveIndex; i++){
+            Debug.Log("calling spawn ");
             SpawnEnemy();
             yield return new WaitForSeconds(0.5f);
         }
@@ -33,6 +34,7 @@ public class WaveSpawner : MonoBehaviour
     }
 
     void SpawnEnemy(){
+        Debug.Log("spawn called");
         Instantiate(enemyPrefab,spawnPoint.position, spawnPoint.rotation);
     }
 }
